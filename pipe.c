@@ -33,7 +33,7 @@ int main(){
 			exit(-1);
 		}
 		if (close(fd2[1])<0) {
-                        printf("Ошибка при закрытии pipe на чтение\n");
+                        printf("Ошибка при закрытии pipe на запись\n");
                         exit(-1);
                 }
 		size = write(fd1[1],string1,13);
@@ -49,9 +49,11 @@ int main(){
                         printf("Cant\'t read string\n");
                         exit(-1);
                 }
-                printf("Информация от дочернего процесса: %s\n",resstring2);
+                printf("Информация от дочернего процесса:");
+		for (int i=0; i<14; i++) printf("%c", resstring2[i]);
+		printf("\n");
 		if(close(fd1[1]) <0 ) {
-			printf("Не получилось закрыть исхожящий поток\n");
+			printf("Не получилось закрыть исходящий поток\n");
 			exit(-1);
 		}
 		if(close(fd2[0]) <0 ) {
@@ -76,7 +78,9 @@ int main(){
         		printf("Cant\'t read string\n");
         		exit(-1);
         	}
-		printf("%s\n",resstring1);
+		printf("Информация от родителя:");
+		for (int i=0; i<13; i++) printf("%c", resstring1[i]);
+		printf("\n");
 		size = write(fd2[1],string2,14);
        		 //Проверка количества байт, записанных в строку с помощию системного вызова write()
                 if (size !=14){
@@ -90,7 +94,7 @@ int main(){
 			exit(-1);
 		}
 		 if(close(fd2[1])<0) {
-                        printf("Cant\'t close input stream\n");
+                        printf("Cant\'t close output stream\n");
                 	exit(-1);
                 }
 

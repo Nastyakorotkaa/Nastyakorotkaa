@@ -71,7 +71,7 @@ class Dinner extends Meal {
 }
 
 // Главный класс для тестирования полиморфизма
-public class PolymorphismExample {
+public class PolymorphismExample1 {
     public static void main(String[] args) {
         // Создание массива приемов пищи
         Meal[] meals = new Meal[3];
